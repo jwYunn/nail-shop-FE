@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:20-alpine
 
 RUN npm install -g http-server
 
@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --production
+RUN npm ci
 
 COPY . .
 
@@ -14,4 +14,4 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["http-server", "dist"]
